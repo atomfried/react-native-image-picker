@@ -198,6 +198,9 @@ public class Utils {
     }
 
     private static boolean needToSwapDimension(String orientation){
+      Log.i("blub");
+      Log.i(orientation);
+      Log.i(ExifInterface.ORIENTATION_ROTATE_90);
         return orientation.equals(String.valueOf(ExifInterface.ORIENTATION_ROTATE_90))
                 || orientation.equals(String.valueOf(ExifInterface.ORIENTATION_ROTATE_270));
     }
@@ -219,11 +222,11 @@ public class Utils {
                 Bitmap b = BitmapFactory.decodeStream(imageStream);
                 String originalOrientation = getOrientation(uri, context);
 
-                //if (needToSwapDimension(originalOrientation)) {
-                    //b = Bitmap.createScaledBitmap(b, newDimens[1], newDimens[0], true);
-                //}else {
+                if (needToSwapDimension(originalOrientation)) {
+                    b = Bitmap.createScaledBitmap(b, newDimens[1], newDimens[0], true);
+                }else {
                     b = Bitmap.createScaledBitmap(b, newDimens[0], newDimens[1], true);
-                //}
+                }
 
                 File file = createFile(context, getFileTypeFromMime(mimeType));
 
