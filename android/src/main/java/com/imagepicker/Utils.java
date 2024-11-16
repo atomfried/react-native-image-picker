@@ -220,9 +220,9 @@ public class Utils {
                 String originalOrientation = getOrientation(uri, context);
 
                 //if (needToSwapDimension(originalOrientation)) {
-                    b = Bitmap.createScaledBitmap(b, newDimens[1], newDimens[0], true);
+                    //b = Bitmap.createScaledBitmap(b, newDimens[1], newDimens[0], true);
                 //}else {
-                    //b = Bitmap.createScaledBitmap(b, newDimens[0], newDimens[1], true);
+                    b = Bitmap.createScaledBitmap(b, newDimens[0], newDimens[1], true);
                 //}
 
                 File file = createFile(context, getFileTypeFromMime(mimeType));
