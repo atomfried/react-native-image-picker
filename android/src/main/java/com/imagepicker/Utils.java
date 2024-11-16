@@ -198,9 +198,9 @@ public class Utils {
     }
 
     private static boolean needToSwapDimension(String orientation){
-      Log.i("blub");
-      Log.i(orientation);
-      Log.i(ExifInterface.ORIENTATION_ROTATE_90);
+      Log.i("tag", "blub");
+      Log.i("tag", orientation);
+      Log.i("tag", ExifInterface.ORIENTATION_ROTATE_90);
         return orientation.equals(String.valueOf(ExifInterface.ORIENTATION_ROTATE_90))
                 || orientation.equals(String.valueOf(ExifInterface.ORIENTATION_ROTATE_270));
     }
