@@ -19,6 +19,7 @@ import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.util.Base64;
 import android.webkit.MimeTypeMap;
+import android.util.Log
 
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
