@@ -199,9 +199,6 @@ public class Utils {
     }
 
     private static boolean needToSwapDimension(String orientation){
-      Log.e("tag", "blub");
-      Log.e("tag", orientation);
-      Log.e("tag", "" + ExifInterface.ORIENTATION_ROTATE_90);
         return orientation.equals(String.valueOf(ExifInterface.ORIENTATION_ROTATE_90))
                 || orientation.equals(String.valueOf(ExifInterface.ORIENTATION_ROTATE_270));
     }
@@ -211,18 +208,23 @@ public class Utils {
     public static Uri resizeImage(Uri uri, Context context, Options options) {
         try {
             int[] origDimens = getImageDimensions(uri, context);
+            Log.i("tag", "origDimens "+origDimens);
 
             if (!shouldResizeImage(origDimens[0], origDimens[1], options)) {
                 return uri;
             }
 
             int[] newDimens = getImageDimensBasedOnConstraints(origDimens[0], origDimens[1], options);
+            Log.i("tag", "newDimens "+newDimens);
 
             try (InputStream imageStream = context.getContentResolver().openInputStream(uri)) {
                 String mimeType = getMimeType(uri, context);
                 Bitmap b = BitmapFactory.decodeStream(imageStream);
                 String originalOrientation = getOrientation(uri, context);
 
+                Log.i("tag", "originalOrient "+ originalOrientation);
+
+                Log.i("tag", "needToSwap "+ needToSwapDimension(originalOrientation));
                 if (needToSwapDimension(originalOrientation)) {
                     b = Bitmap.createScaledBitmap(b, newDimens[1], newDimens[0], true);
                 }else {
